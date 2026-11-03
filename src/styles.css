@@ -5,17 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Sticky-note design system.
+ * Cork board + sticky paper + marker ink palette.
+ * The @theme inline block maps CSS custom properties to Tailwind utilities.
  */
 
 @theme inline {
@@ -45,20 +37,145 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Sticky-note palette */
+  --color-cork: var(--cork);
+  --color-cork-dark: var(--cork-dark);
+  --color-cork-deep: var(--cork-deep);
+  --color-note-yellow: var(--note-yellow);
+  --color-note-pink: var(--note-pink);
+  --color-note-blue: var(--note-blue);
+  --color-note-green: var(--note-green);
+  --color-note-orange: var(--note-orange);
+  --color-note-purple: var(--note-purple);
+  --color-note-white: var(--note-white);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-marker-red: var(--marker-red);
+  --color-tape: var(--tape);
+}
+
+@theme {
+  --font-hand: "Caveat", cursive;
+  --font-marker: "Permanent Marker", cursive;
+  --font-note: "Patrick Hand", cursive;
+
+  --animate-drop-in: drop-in 0.7s cubic-bezier(0.18, 1.25, 0.4, 1) both;
+  --animate-pop-in: pop-in 0.45s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+  --animate-note-wiggle: note-wiggle 0.45s ease-in-out;
+  --animate-wiggle: wiggle 2.5s ease-in-out infinite;
+  --animate-float: float 5.5s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite;
+  --animate-marquee: marquee 24s linear infinite;
+  --animate-blink: blink 1s step-end infinite;
+  --animate-grow: grow 1.1s cubic-bezier(0.2, 1.1, 0.4, 1) both;
+  --animate-fall: fall 3s cubic-bezier(0.35, 0.5, 0.65, 1) forwards;
+  --animate-spin-slow: rot360 14s linear infinite;
+  --animate-sway: sway 3.5s ease-in-out infinite;
+
+  @keyframes drop-in {
+    0% {
+      transform: translateY(-120vh) rotate(calc(var(--note-rot, 0deg) - 14deg));
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    75% {
+      transform: translateY(-8px) rotate(calc(var(--note-rot, 0deg) + 3deg));
+    }
+    100% {
+      transform: translateY(0) rotate(var(--note-rot, 0deg));
+      opacity: 1;
+    }
+  }
+  @keyframes pop-in {
+    0% {
+      transform: scale(0) rotate(-10deg);
+      opacity: 0;
+    }
+    60% {
+      transform: scale(1.12) rotate(4deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+  @keyframes note-wiggle {
+    0%,
+    100% {
+      transform: rotate(var(--note-rot, 0deg));
+    }
+    25% {
+      transform: rotate(calc(var(--note-rot, 0deg) + 2.5deg)) translateY(-2px);
+    }
+    75% {
+      transform: rotate(calc(var(--note-rot, 0deg) - 2.5deg)) translateY(-2px);
+    }
+  }
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-2.5deg);
+    }
+    50% {
+      transform: rotate(2.5deg);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--float-rot, 0deg));
+    }
+    50% {
+      transform: translateY(-14px) rotate(calc(var(--float-rot, 0deg) + 3deg));
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes grow {
+    from {
+      width: 0;
+    }
+  }
+  @keyframes fall {
+    0% {
+      transform: translateY(-12vh) rotate(0deg);
+    }
+    100% {
+      transform: translateY(115vh) rotate(540deg);
+    }
+  }
+  @keyframes rot360 {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-1.2deg);
+    }
+    50% {
+      transform: rotate(1.2deg);
+    }
+  }
 }
 
 :root {
@@ -82,19 +199,29 @@
   --border: oklch(0.929 0.013 255.508);
   --input: oklch(0.929 0.013 255.508);
   --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  /* Sticky-note palette */
+  --cork: oklch(0.62 0.085 60);
+  --cork-dark: oklch(0.52 0.08 55);
+  --cork-deep: oklch(0.4 0.07 50);
+  --note-yellow: oklch(0.93 0.13 95);
+  --note-pink: oklch(0.9 0.075 5);
+  --note-blue: oklch(0.91 0.065 220);
+  --note-green: oklch(0.9 0.1 140);
+  --note-orange: oklch(0.88 0.11 60);
+  --note-purple: oklch(0.88 0.08 300);
+  --note-white: oklch(0.97 0.005 95);
+  --ink: oklch(0.28 0.05 270);
+  --ink-soft: oklch(0.4 0.05 270);
+  --marker-red: oklch(0.62 0.22 25);
+  --tape: oklch(0.93 0.03 90 / 0.75);
+
+  /* Shadows */
+  --shadow-note:
+    0 14px 28px -10px oklch(0.35 0.06 50 / 0.5), 0 4px 8px -4px oklch(0.35 0.06 50 / 0.35);
+  --shadow-note-hover:
+    0 26px 44px -12px oklch(0.3 0.06 50 / 0.55), 0 8px 14px -4px oklch(0.3 0.06 50 / 0.4);
+  --shadow-popup: 0 18px 40px -12px oklch(0.2 0.05 260 / 0.5);
 }
 
 .dark {
@@ -117,19 +244,54 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+/* Cork board texture built entirely from the cork color tokens */
+@utility cork-board {
+  background-color: var(--color-cork);
+  background-image:
+    radial-gradient(
+      circle at 20% 12%,
+      color-mix(in oklab, var(--color-cork) 55%, oklch(0.85 0.09 70) 45%) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 90%,
+      color-mix(in oklab, var(--color-cork-deep) 40%, transparent) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle,
+      color-mix(in oklab, var(--color-cork-dark) 55%, transparent) 1.2px,
+      transparent 1.8px
+    ),
+    radial-gradient(
+      circle,
+      color-mix(in oklab, var(--color-cork) 40%, oklch(0.9 0.1 70) 60%) 1px,
+      transparent 1.5px
+    );
+  background-size:
+    100% 100%,
+    100% 100%,
+    23px 23px,
+    17px 17px;
+}
+
+@utility cork-vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    color-mix(in oklab, var(--color-cork-deep) 45%, transparent) 100%
+  );
+}
+
+@utility ruled-lines {
+  background-image: repeating-linear-gradient(
+    transparent 0px,
+    transparent 30px,
+    color-mix(in oklab, var(--color-ink) 12%, transparent) 30px,
+    color-mix(in oklab, var(--color-ink) 12%, transparent) 31px
+  );
 }
 
 @layer base {
@@ -137,8 +299,27 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-marker-red) 35%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
