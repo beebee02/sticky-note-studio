@@ -2,12 +2,12 @@ import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 
 import { cn } from "@/lib/utils";
 
 export const NOTE_COLORS = {
-  yellow: "bg-note-yellow",
+  sky: "bg-note-sky",
+  mint: "bg-note-mint",
+  lavender: "bg-note-lavender",
+  ice: "bg-note-ice",
+  violet: "bg-note-violet",
   pink: "bg-note-pink",
-  blue: "bg-note-blue",
-  green: "bg-note-green",
-  orange: "bg-note-orange",
-  purple: "bg-note-purple",
   white: "bg-note-white",
 } as const;
 
@@ -139,7 +139,7 @@ export function Pushpin({ className }: { className?: string }) {
       aria-hidden
       className={cn("absolute -top-2.5 left-1/2 z-10 -translate-x-1/2", className)}
     >
-      <span className="relative block size-5 rounded-full bg-marker-red shadow-md ring-2 ring-marker-red/40">
+      <span className="relative block size-5 rounded-full bg-marker-pink shadow-md ring-2 ring-marker-pink/40">
         <span className="absolute top-1 left-1 size-1.5 rounded-full bg-note-white/70" />
       </span>
     </span>

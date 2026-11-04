@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Sticky-note design system.
- * Cork board + sticky paper + marker ink palette.
+ * Sticky-note design system — "Midnight Desk" cool palette.
+ * Deep indigo board + cool sticky paper (sky, mint, lavender, violet)
+ * + hot magenta marker accent. No warm browns anywhere.
  * The @theme inline block maps CSS custom properties to Tailwind utilities.
  */
 
@@ -38,20 +39,20 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Sticky-note palette */
+  /* Sticky-note palette (cool tones only) */
   --color-cork: var(--cork);
   --color-cork-dark: var(--cork-dark);
   --color-cork-deep: var(--cork-deep);
-  --color-note-yellow: var(--note-yellow);
+  --color-note-sky: var(--note-sky);
+  --color-note-mint: var(--note-mint);
+  --color-note-lavender: var(--note-lavender);
+  --color-note-ice: var(--note-ice);
+  --color-note-violet: var(--note-violet);
   --color-note-pink: var(--note-pink);
-  --color-note-blue: var(--note-blue);
-  --color-note-green: var(--note-green);
-  --color-note-orange: var(--note-orange);
-  --color-note-purple: var(--note-purple);
   --color-note-white: var(--note-white);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
-  --color-marker-red: var(--marker-red);
+  --color-marker-pink: var(--marker-pink);
   --color-tape: var(--tape);
 }
 
@@ -180,79 +181,81 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --background: oklch(0.3 0.06 278);
+  --foreground: oklch(0.95 0.02 250);
+  --card: oklch(0.34 0.06 278);
+  --card-foreground: oklch(0.95 0.02 250);
+  --popover: oklch(0.34 0.06 278);
+  --popover-foreground: oklch(0.95 0.02 250);
+  --primary: oklch(0.88 0.1 225);
+  --primary-foreground: oklch(0.28 0.06 275);
+  --secondary: oklch(0.4 0.06 278);
+  --secondary-foreground: oklch(0.95 0.02 250);
+  --muted: oklch(0.4 0.06 278);
+  --muted-foreground: oklch(0.78 0.04 260);
+  --accent: oklch(0.44 0.07 278);
+  --accent-foreground: oklch(0.95 0.02 250);
+  --destructive: oklch(0.66 0.24 350);
+  --destructive-foreground: oklch(0.97 0.005 250);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.88 0.1 225);
 
-  /* Sticky-note palette */
-  --cork: oklch(0.62 0.085 60);
-  --cork-dark: oklch(0.52 0.08 55);
-  --cork-deep: oklch(0.4 0.07 50);
-  --note-yellow: oklch(0.93 0.13 95);
-  --note-pink: oklch(0.9 0.075 5);
-  --note-blue: oklch(0.91 0.065 220);
-  --note-green: oklch(0.9 0.1 140);
-  --note-orange: oklch(0.88 0.11 60);
-  --note-purple: oklch(0.88 0.08 300);
-  --note-white: oklch(0.97 0.005 95);
-  --ink: oklch(0.28 0.05 270);
-  --ink-soft: oklch(0.4 0.05 270);
-  --marker-red: oklch(0.62 0.22 25);
-  --tape: oklch(0.93 0.03 90 / 0.75);
+  /* Midnight desk board */
+  --cork: oklch(0.37 0.075 278);
+  --cork-dark: oklch(0.31 0.065 276);
+  --cork-deep: oklch(0.23 0.055 272);
 
-  /* Shadows */
+  /* Cool sticky paper */
+  --note-sky: oklch(0.88 0.1 225);
+  --note-mint: oklch(0.89 0.11 170);
+  --note-lavender: oklch(0.88 0.075 300);
+  --note-ice: oklch(0.94 0.025 240);
+  --note-violet: oklch(0.84 0.1 285);
+  --note-pink: oklch(0.86 0.11 335);
+  --note-white: oklch(0.97 0.008 250);
+  --ink: oklch(0.27 0.06 278);
+  --ink-soft: oklch(0.4 0.06 278);
+  --marker-pink: oklch(0.66 0.24 350);
+  --tape: oklch(0.9 0.03 250 / 0.65);
+
+  /* Shadows (cool dark) */
   --shadow-note:
-    0 14px 28px -10px oklch(0.35 0.06 50 / 0.5), 0 4px 8px -4px oklch(0.35 0.06 50 / 0.35);
+    0 14px 28px -10px oklch(0.15 0.05 275 / 0.6), 0 4px 8px -4px oklch(0.15 0.05 275 / 0.45);
   --shadow-note-hover:
-    0 26px 44px -12px oklch(0.3 0.06 50 / 0.55), 0 8px 14px -4px oklch(0.3 0.06 50 / 0.4);
-  --shadow-popup: 0 18px 40px -12px oklch(0.2 0.05 260 / 0.5);
+    0 26px 44px -12px oklch(0.12 0.05 275 / 0.65), 0 8px 14px -4px oklch(0.12 0.05 275 / 0.5);
+  --shadow-popup: 0 18px 40px -12px oklch(0.1 0.05 275 / 0.6);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --background: oklch(0.23 0.055 272);
+  --foreground: oklch(0.95 0.02 250);
+  --card: oklch(0.3 0.06 278);
+  --card-foreground: oklch(0.95 0.02 250);
+  --popover: oklch(0.3 0.06 278);
+  --popover-foreground: oklch(0.95 0.02 250);
+  --primary: oklch(0.88 0.1 225);
+  --primary-foreground: oklch(0.28 0.06 275);
+  --secondary: oklch(0.4 0.06 278);
+  --secondary-foreground: oklch(0.95 0.02 250);
+  --muted: oklch(0.4 0.06 278);
+  --muted-foreground: oklch(0.78 0.04 260);
+  --accent: oklch(0.44 0.07 278);
+  --accent-foreground: oklch(0.95 0.02 250);
+  --destructive: oklch(0.66 0.24 350);
+  --destructive-foreground: oklch(0.97 0.005 250);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
+  --ring: oklch(0.88 0.1 225);
 }
 
-/* Cork board texture built entirely from the cork color tokens */
+/* Indigo board texture built entirely from the board color tokens */
 @utility cork-board {
   background-color: var(--color-cork);
   background-image:
     radial-gradient(
       circle at 20% 12%,
-      color-mix(in oklab, var(--color-cork) 55%, oklch(0.85 0.09 70) 45%) 0%,
+      color-mix(in oklab, var(--color-cork) 55%, oklch(0.62 0.09 280) 45%) 0%,
       transparent 45%
     ),
     radial-gradient(
@@ -267,7 +270,7 @@
     ),
     radial-gradient(
       circle,
-      color-mix(in oklab, var(--color-cork) 40%, oklch(0.9 0.1 70) 60%) 1px,
+      color-mix(in oklab, var(--color-cork) 40%, oklch(0.55 0.08 285) 60%) 1px,
       transparent 1.5px
     );
   background-size:
@@ -281,7 +284,7 @@
   background: radial-gradient(
     ellipse at center,
     transparent 55%,
-    color-mix(in oklab, var(--color-cork-deep) 45%, transparent) 100%
+    color-mix(in oklab, var(--color-cork-deep) 55%, transparent) 100%
   );
 }
 
@@ -310,7 +313,7 @@
   }
 
   ::selection {
-    background-color: color-mix(in oklab, var(--color-marker-red) 35%, transparent);
+    background-color: color-mix(in oklab, var(--color-marker-pink) 40%, transparent);
   }
 }
 

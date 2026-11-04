@@ -39,15 +39,20 @@ const CORNERS = [
   "top-24 right-6",
 ] as const;
 
-const RAIN_COLORS: NoteColor[] = ["yellow", "pink", "blue", "green", "orange", "purple"];
+const RAIN_COLORS: NoteColor[] = ["sky", "mint", "lavender", "ice", "violet", "pink"];
 const CONFETTI_COLORS = [
-  "bg-marker-red",
-  "bg-note-yellow",
-  "bg-note-blue",
-  "bg-note-green",
-  "bg-note-purple",
-  "bg-note-orange",
+  "bg-marker-pink",
+  "bg-note-sky",
+  "bg-note-mint",
+  "bg-note-violet",
+  "bg-note-lavender",
+  "bg-note-pink",
 ];
+
+/** Array access that always lands in bounds; silences noUncheckedIndexedAccess. */
+function at<T>(arr: readonly T[], i: number): T {
+  return arr[i % arr.length] as T;
+}
 
 export function SurpriseLayer() {
   const [popup, setPopup] = useState<{ popup: PopupMsg; corner: string; key: number } | null>(null);
@@ -56,7 +61,7 @@ export function SurpriseLayer() {
   const dismissTimer = useRef<number | undefined>(undefined);
 
   const showPopup = useCallback((p: PopupMsg) => {
-    setPopup({ popup: p, corner: CORNERS[Math.floor(Math.random() * CORNERS.length)], key: Date.now() });
+    setPopup({ popup: p, corner: at(CORNERS, Math.floor(Math.random() * CORNERS.length)), key: Date.now() });
   }, []);
 
   useEffect(() => {
@@ -67,7 +72,7 @@ export function SurpriseLayer() {
       if (e.kind === "chaos") {
         setRainKey((k) => k + 1);
         setConfettiKey((k) => k + 1);
-        showPopup(MEMES[Math.floor(Math.random() * MEMES.length)]);
+        showPopup(at(MEMES, Math.floor(Math.random() * MEMES.length)));
       }
     };
     listeners.add(onEvent);
@@ -83,7 +88,7 @@ export function SurpriseLayer() {
     const shuffled = [...MEMES].sort(() => Math.random() - 0.5);
     const schedule = () => {
       timer = window.setTimeout(() => {
-        showPopup(shuffled[idx % shuffled.length]);
+        showPopup(at(shuffled, idx));
         idx += 1;
         schedule();
       }, 14000 + Math.random() * 9000);
@@ -146,7 +151,7 @@ function StickyRain() {
         left: Math.random() * 96,
         delay: Math.random() * 1.2,
         duration: 2.4 + Math.random() * 1.6,
-        color: RAIN_COLORS[i % RAIN_COLORS.length],
+        color: at(RAIN_COLORS, i),
         size: 44 + Math.random() * 44,
         lines: 2 + Math.floor(Math.random() * 3),
       })),
@@ -192,7 +197,7 @@ function Confetti() {
         left: Math.random() * 100,
         delay: Math.random() * 0.8,
         duration: 2 + Math.random() * 1.5,
-        color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+        color: at(CONFETTI_COLORS, i),
         w: 6 + Math.random() * 5,
         h: 10 + Math.random() * 8,
       })),
@@ -240,13 +245,13 @@ export function DoNotPress() {
         surprise.chaos();
         setPresses((p) => Math.min(p + 1, PRESS_LABELS.length - 1));
       }}
-      className="relative -rotate-3 cursor-pointer rounded-sm bg-marker-red px-5 py-3 font-marker text-lg text-note-white shadow-(--shadow-note) transition duration-200 hover:rotate-0 hover:scale-105"
+      className="relative -rotate-3 cursor-pointer rounded-sm bg-marker-pink px-5 py-3 font-marker text-lg text-note-white shadow-(--shadow-note) transition duration-200 hover:rotate-0 hover:scale-105"
     >
       <span
         aria-hidden
         className="absolute -top-2.5 left-1/2 h-5 w-14 -translate-x-1/2 -rotate-2 bg-tape"
       />
-      {PRESS_LABELS[presses]}
+      {at(PRESS_LABELS, presses)}
     </button>
   );
 }
