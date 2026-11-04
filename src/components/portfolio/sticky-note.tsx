@@ -59,7 +59,7 @@ interface StickyNoteProps {
 }
 
 export function StickyNote({
-  color = "yellow",
+  color = "sky",
   rotation = 0,
   delay = 0,
   entrance = true,
