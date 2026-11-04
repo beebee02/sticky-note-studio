@@ -28,7 +28,7 @@ export function DoodleStar({ className }: { className?: string }) {
     <svg viewBox="0 0 60 60" aria-hidden className={className}>
       <path
         d="M30 4 L36 22 L55 23 L40 35 L46 54 L30 42 L14 54 L20 35 L5 23 L24 22 Z"
-        fill="var(--color-note-yellow)"
+        fill="var(--color-note-mint)"
         stroke="currentColor"
         strokeWidth="3"
         strokeLinejoin="round"
@@ -57,7 +57,7 @@ export function StickerWow({ className }: { className?: string }) {
     <svg viewBox="0 0 120 120" aria-hidden className={className}>
       <polygon
         points="60,2 74,26 102,18 96,46 118,60 96,74 102,102 74,94 60,118 46,94 18,102 24,74 2,60 24,46 18,18 46,26"
-        fill="var(--color-marker-red)"
+        fill="var(--color-marker-pink)"
         stroke="var(--color-ink)"
         strokeWidth="4"
         strokeLinejoin="round"
