@@ -190,7 +190,7 @@ function Index() {
             TEJA
           </h1>
 
-          <StickyNote color="yellow" rotation={1.5} delay={0.25} pad="p-5" className="max-w-md">
+          <StickyNote color="mint" rotation={1.5} delay={0.25} pad="p-5" className="max-w-md">
             <p className="font-note text-xl leading-snug text-ink">
               I build <span className="font-marker text-marker-pink">delightfully weird</span> things for the web — then
               blame the cache when they break.
