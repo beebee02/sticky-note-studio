@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the portfolio project orbit in a client-only React Three Fiber module, animate navigation with GSAP, and keep optional MediaPipe camera tracking in a separate browser lifecycle; call Lovable AI only through server functions so secrets and prompts stay server-side.
